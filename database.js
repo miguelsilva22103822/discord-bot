@@ -7,7 +7,7 @@ db.serialize(() => {
       id TEXT PRIMARY KEY,
       coins INTEGER DEFAULT 0,
       message_count INTEGER DEFAULT 0,
-      cheat_count INTEGER DEFAULT 0
+      waifu TEXT DEFAULT NULL
     )
   `);
 });
@@ -22,6 +22,29 @@ function getUser(id) {
         resolve(row);
       }
     });
+  });
+}
+
+function saveUser(id, user) {
+  return new Promise((resolve, reject) => {
+    db.run(
+      `INSERT INTO users (id, coins, message_count, waifu)
+       VALUES (?, ?, ?, ?)
+       ON CONFLICT(id) DO UPDATE SET
+         coins = excluded.coins,
+         message_count = excluded.message_count,
+         waifu = excluded.waifu`,
+      [
+        id,
+        user.coins || 0,
+        user.message_count || 0,
+        JSON.stringify(user.waifu || null)
+      ],
+      function (err) {
+        if (err) return reject(err);
+        resolve();
+      }
+    );
   });
 }
 
@@ -46,6 +69,12 @@ function incrementMessages(id) {
   });
 }
 
+async function setWaifu(userId, waifuData) {
+  const user = getUser(userId);
+  user.waifu = waifuData;
+  saveUser(userId, user);
+}
+
 function addCheat(id) {
   db.run(`UPDATE users SET cheat_count = cheat_count + 1 WHERE id = ?`, [id]);
 }
@@ -53,5 +82,6 @@ function addCheat(id) {
 module.exports = {
   getUser,
   incrementMessages,
+  setWaifu,
   addCheat
 };
