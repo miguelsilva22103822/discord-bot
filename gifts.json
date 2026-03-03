@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Chocolate",
+    "cost": 50,
+    "affection_bonus": 5
+  },
+  {
+    "id": 2,
+    "name": "Flowers",
+    "cost": 120,
+    "affection_bonus": 12
+  },
+  {
+    "id": 3,
+    "name": "Diamond Necklace",
+    "cost": 1000,
+    "affection_bonus": 40
+  },
+  {
+    "id": 4,
+    "name": "Handwritten Letter",
+    "cost": 20,
+    "affection_bonus": 3
+  }
+]

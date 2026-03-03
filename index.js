@@ -6,35 +6,35 @@ const commands = require('./commands');
 //console.log(require('discord.js'));
 
 const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent,
-    GatewayIntentBits.GuildMessageReactions
-  ]
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildMessageReactions
+    ]
 });
 
 client.once('clientReady', () => {
-  console.log(`✅ Logged in as ${client.user.tag}`);
+    console.log(`✅ Logged in as ${client.user.tag}`);
 });
 
 client.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
+    if (message.author.bot) return;
 
-  // Track messages for coins
-  await db.incrementMessages(message.author.id);
+    // Track messages for coins
+    await db.incrementMessages(message.author.id);
 
-  if (!message.content.startsWith("!")) return;
+    if (!message.content.startsWith("!")) return;
 
-  const args = message.content.slice(1).split(" ");
-  const command = args.shift().toLowerCase();
+    const args = message.content.slice(1).split(" ");
+    const command = args.shift().toLowerCase();
 
 
-  if (commands[command]) {
-    commands[command](message, args);
-  }
+    if (commands[command]) {
+        commands[command](message, args);
+    }
 
-  console.log("command: ", command);
+    console.log("command: ", command);
 });
 
 

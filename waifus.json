@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "Mikasa",
+    "rarity": 5,
+    "personality": "stoic",
+    "base_difficulty": 80
+  },
+  {
+    "id": 2,
+    "name": "Rem",
+    "rarity": 4,
+    "personality": "loyal",
+    "base_difficulty": 50
+  }
+]
