@@ -9,19 +9,21 @@ function syncWaifus() {
     db.serialize(() => {
         waifus.forEach((waifu) => {
             db.run(`
-                INSERT INTO waifus (id, name, rarity, personality, base_difficulty)
-                VALUES (?, ?, ?, ?, ?)
+                INSERT INTO waifus (id, name, image_url, rarity, base_price, loyalty)
+                VALUES (?, ?, ?, ?, ?, ?)
                 ON CONFLICT(id) DO UPDATE SET
                 name = excluded.name,
+                image_url = excluded.image_url,
                 rarity = excluded.rarity,
-                personality = excluded.personality,
-                base_difficulty = excluded.base_difficulty
+                base_price = excluded.base_price,
+                loyalty = excluded.loyalty
       `, [
                 waifu.id,
                 waifu.name,
+                waifu.image_url,
                 waifu.rarity,
-                waifu.personality,
-                waifu.base_difficulty
+                waifu.base_price,
+                waifu.loyalty
             ]);
         });
     });

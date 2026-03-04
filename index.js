@@ -21,20 +21,38 @@ client.once('clientReady', () => {
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
 
-    // Track messages for coins
-    await db.incrementMessages(message.author.id);
+    //random chance to spawn waifu
+    const roll = Math.random();
+    if (roll < 0.1) {
+        //actually choose a random waifu instead of hardcoded
+        const waifu = await db.getRandomWaifu();
 
-    if (!message.content.startsWith("!")) return;
+        await message.channel.send({
+            content: `✨ A wild ${waifu.name} appeared! ⭐${waifu.rarity}\n ${message.author.globalName} and waifu are now married! 💍`,
+            embeds: [
+                {
+                    image: { url: waifu.image_url }
+                }
+            ]
+        });
 
-    const args = message.content.slice(1).split(" ");
-    const command = args.shift().toLowerCase();
-
-
-    if (commands[command]) {
-        commands[command](message, args);
+        //register on database
+        db.marryWaifu(message.author.id, waifu.id)
+        return;
     }
 
-    console.log("command: ", command);
+    //Track messages for coins
+    //await db.incrementMessages(message.author.id);
+
+    if (!message.content.startsWith("cc!")) return;
+
+    const args = message.content.slice(3).split(" ");
+    const command = args.shift().toLowerCase();
+
+    if (commands[command]) {
+        console.log("command: ", command);
+        commands[command](message, args);
+    }
 });
 
 

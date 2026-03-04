@@ -2,15 +2,33 @@
   {
     "id": 1,
     "name": "Mikasa",
+    "image_url": "https://i.pinimg.com/736x/10/df/e3/10dfe34514273608a93284ab85e6cad9.jpg",
     "rarity": 5,
-    "personality": "stoic",
-    "base_difficulty": 80
+    "base_price": 500,
+    "loyalty": 50
   },
   {
     "id": 2,
     "name": "Rem",
-    "rarity": 4,
-    "personality": "loyal",
-    "base_difficulty": 50
+    "image_url": "https://i.pinimg.com/736x/c4/ac/64/c4ac640eb1e132a5541664ab07328e46.jpg",
+    "rarity": 5,
+    "base_price": 200,
+    "loyalty": 80
+  },
+  {
+    "id": 3,
+    "name": "Zero Two",
+    "image_url": "https://i.pinimg.com/736x/0a/82/07/0a820733b220b919e0b5834b622d798b.jpg",
+    "rarity": 5,
+    "base_price": 200,
+    "loyalty": 60
+  },
+  {
+    "id": 4,
+    "name": "Miku Nakano",
+    "image_url": "https://i.pinimg.com/736x/51/a8/6c/51a86c11dd3aba42951c249cdf47958f.jpg",
+    "rarity": 5,
+    "base_price": 200,
+    "loyalty": 10 
   }
 ]

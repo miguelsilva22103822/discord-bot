@@ -23,7 +23,7 @@ module.exports = {
         const waifu = rollWaifu();
 
         const sentMessage = await message.channel.send({
-            content: `✨ A wild ${waifu.name} appeared! ⭐${waifu.rarity}\nReact with 💖 to claim!`,
+            content: `✨ A wild ${waifu.name} appeared! ⭐${waifu.rarity}\nReact with 💍 to marry!`,
             embeds: [
                 {
                     image: { url: waifu.image }
@@ -31,10 +31,10 @@ module.exports = {
             ]
         });
 
-        await sentMessage.react("💖");
+        await sentMessage.react("💍");
 
         const filter = (reaction, user) => {
-            return reaction.emoji.name === "💖" && !user.bot;
+            return reaction.emoji.name === "💍" && !user.bot;
         };
 
         const collector = sentMessage.createReactionCollector({
@@ -60,13 +60,13 @@ module.exports = {
             });
 
             message.channel.send(
-                `💍 <@${user.id}> claimed ${waifu.name}!`
+                `💍 <@${user.id}> is now married to ${waifu.name}!`
             );
         });
 
         collector.on("end", (collected) => {
             if (collected.size === 0) {
-                message.channel.send("Nobody claimed her...");
+                message.channel.send("Nobody married her...");
             }
         });
     },
@@ -95,4 +95,10 @@ module.exports = {
             message.channel.send("❤️ She stayed loyal.");
         }
     },
+
+    info: async (message) => {
+        const coins = await db.getCoins(message.author.id);
+
+        message.channel.send(`You have ${coins} coins.`)
+    }
 };
