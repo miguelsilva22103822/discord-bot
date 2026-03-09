@@ -30,5 +30,13 @@
     "rarity": 5,
     "base_price": 200,
     "loyalty": 10 
+  },
+  {
+    "id": 5,
+    "name": "Esdeath",
+    "image_url": "https://i.pinimg.com/736x/e0/f3/ed/e0f3ed8248f0acd16a577fb5f2ac93bc.jpg",
+    "rarity": 5,
+    "base_price": 150,
+    "loyalty": 20 
   }
 ]

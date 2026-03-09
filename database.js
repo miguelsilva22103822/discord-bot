@@ -7,7 +7,7 @@ db.serialize(() => {
     db.run(`
         CREATE TABLE IF NOT EXISTS users (
             id TEXT PRIMARY KEY,
-            coins INTEGER DEFAULT 0,
+            coins INTEGER NOT NULL DEFAULT 0,
             message_count INTEGER DEFAULT 0
         )`
     );
